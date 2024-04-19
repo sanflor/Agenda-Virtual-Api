@@ -1,14 +1,17 @@
 package com.todotic.contactlistapi.controller;
 
+import com.todotic.contactlistapi.dto.ContactDTO;
 import com.todotic.contactlistapi.entity.Contact;
 import com.todotic.contactlistapi.service.ContactService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @AllArgsConstructor
 @RequestMapping("/api/contacts")
 @RestController
+
 public class ContactController {
 
 
@@ -27,13 +30,13 @@ public class ContactController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Contact create(@RequestBody Contact contact) {
-        return contactService.create(contact);
+    public Contact create(@RequestBody ContactDTO contactDTO) {
+        return contactService.create(contactDTO);
     }
 
     @PutMapping("{id}")
-    public Contact update(@PathVariable Integer id, @RequestBody Contact form) {
-        return contactService.update(id, form);
+    public Contact update(@PathVariable Integer id, @RequestBody ContactDTO contactDTO) {
+        return contactService.update(id, contactDTO);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
