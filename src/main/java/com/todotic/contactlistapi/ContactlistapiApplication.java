@@ -2,10 +2,12 @@ package com.todotic.contactlistapi;
 
 import com.todotic.contactlistapi.entity.Contact;
 import com.todotic.contactlistapi.repository.ContactRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.ui.Model;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -31,5 +33,9 @@ public class ContactlistapiApplication {
 				);
 				contactRepository.saveAll(contacts);
 		};
+	}
+	@Bean
+	ModelMapper modelMapper(){
+		return new ModelMapper();
 	}
 }
