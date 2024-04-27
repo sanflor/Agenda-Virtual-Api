@@ -29,18 +29,18 @@ public class ContactController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
+    @PostMapping("/new")
     public Contact create(@Validated @RequestBody ContactDTO contactDTO) {
         return contactService.create(contactDTO);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/update/{id}")
     public Contact update(@Validated @PathVariable Integer id, @RequestBody ContactDTO contactDTO) {
         return contactService.update(id, contactDTO);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete (@PathVariable Integer id) {
         contactService.delete(id);
 
