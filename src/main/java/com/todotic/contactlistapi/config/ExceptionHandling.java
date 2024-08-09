@@ -1,5 +1,7 @@
 package com.todotic.contactlistapi.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.validation.FieldError;
@@ -14,9 +16,13 @@ import java.util.List;
 @RestControllerAdvice
 public class ExceptionHandling {
 
+    private static final Logger logger = LoggerFactory.getLogger(ExceptionHandling.class);
+
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     ProblemDetail handleValidation(MethodArgumentNotValidException exception){
+        logger.error("Validacion fallida: ", exception);
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
 
         List<String> errors = new ArrayList<>();
@@ -25,7 +31,7 @@ public class ExceptionHandling {
         for (FieldError fe : fieldErrors) {
             errors.add(fe.getDefaultMessage());
         }
-        problemDetail.setProperty("errors", errors);
+        problemDetail.setProperty("Error", errors);
         return problemDetail;
 
     }
