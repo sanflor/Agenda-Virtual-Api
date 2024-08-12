@@ -24,45 +24,45 @@ public class ContactController {
 
     @GetMapping()
     public Iterable<Contact> list(){
-        logger.info("Solicitud para listar todos los registros");
+        logger.info("Recibida solicitud para listar todos los contactos.");
         Iterable<Contact> contacts = contactService.findAll();
-        logger.debug("Registros listados: {}", contacts);
+        logger.debug("Contactos listados: {}", contacts);
         return contacts;
     }
 
     @GetMapping("{id}")
     public Contact get (@PathVariable Integer id){
-        logger.info("Solicitud para obtener registro con ID: {}", id);
+        logger.info("Recibida solicitud para obtener contacto con ID: {}", id);
         Contact contact = contactService.findById(id);
-        logger.debug("Registro obtenido: {}", contact);
+        logger.debug("Contacto obtenido: {}", contact);
         return contact;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/new")
     public Contact create(@Validated @RequestBody ContactDTO contactDTO) {
-        logger.info("Solicitud para crear nuevo registro");
-        logger.debug("Datos recibidos para nuevo registro: {}", contactDTO);
+        logger.info("Recibida solicitud para crear un nuevo contacto.");
+        logger.debug("Datos para nuevo contacto: Email: {}, Name: {}", contactDTO.getEmail(), contactDTO.getName());
         Contact createdContact = contactService.create(contactDTO);
-        logger.debug("Nuevo registro creado: {}", createdContact);
+        logger.info("Nuevo contacto creado: {}", createdContact);
         return createdContact;
     }
 
     @PutMapping("/update/{id}")
     public Contact update(@Validated @PathVariable Integer id, @RequestBody ContactDTO contactDTO) {
-        logger.info("Solicitud para actualizar registro con ID: {}", id);
-        logger.debug("Datos recibidos para actualizar registro: {}", contactDTO);
+        logger.info("Recibida solicitud para actualizar contacto con ID: {}", id);
+        logger.debug("Datos para actualizar contacto: Email: {}, Name: {}", contactDTO.getEmail(), contactDTO.getName());
         Contact updatedContact = contactService.update(id, contactDTO);
-        logger.debug("Registro actualizado: {}", updatedContact);
+        logger.info("Contacto actualizado: {}", updatedContact);
         return updatedContact;
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete/{id}")
     public void delete (@PathVariable Integer id) {
-        logger.info("Solicitud para eliminar registro con ID: {}", id);
+        logger.info("Recibida solicitud para eliminar contacto con ID: {}", id);
         contactService.delete(id);
-        logger.info("Registro eliminado con éxito");
+        logger.info("Contacto eliminado con éxito.");
 
     }
 

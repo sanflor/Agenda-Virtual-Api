@@ -26,4 +26,14 @@ public class Contact {
     @NonNull
     private LocalDateTime createdAt;
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", createdAt=" + createdAt +
+                '}';
+    }
+
 }
