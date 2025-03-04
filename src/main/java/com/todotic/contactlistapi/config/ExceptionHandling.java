@@ -21,12 +21,12 @@ public class ExceptionHandling {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    ProblemDetail handleValidation(MethodArgumentNotValidException exception){
+    ProblemDetail handleValidation(MethodArgumentNotValidException exception) {
         logger.error("Validacion fallida: ", exception);
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
 
         List<String> errors = new ArrayList<>();
-        List<FieldError> fieldErrors= exception.getFieldErrors();
+        List<FieldError> fieldErrors = exception.getFieldErrors();
 
         for (FieldError fe : fieldErrors) {
             errors.add(fe.getDefaultMessage());

@@ -47,7 +47,7 @@ public class ContactService {
     public Contact create(ContactDTO contactDTO) {
         logger.info("Iniciando creación de un nuevo contacto.");
         logger.debug("Datos del contacto a crear: {}", contactDTO);
-        Contact contact = mapper.map(contactDTO, Contact.class );
+        Contact contact = mapper.map(contactDTO, Contact.class);
         contact.setCreatedAt(LocalDateTime.now());
         Contact savedContact = contactRepository.save(contact);
         logger.info("Contacto creado con éxito: {}", savedContact);
@@ -58,7 +58,7 @@ public class ContactService {
         logger.info("Iniciando actualización de contacto con ID: {}", id);
         logger.debug("Datos para actualizar contacto: {}", contactDTO);
         Contact contactFromDB = findById(id);
-        mapper.map(contactDTO, contactFromDB );
+        mapper.map(contactDTO, contactFromDB);
         Contact updatedContact = contactRepository.save(contactFromDB);
         logger.debug("Contacto actualizado con éxito: {}", updatedContact);
         return updatedContact;
@@ -73,7 +73,6 @@ public class ContactService {
         contactRepository.delete(contact);
         logger.info("Contacto eliminado con éxito: {}", contact);
     }
-
 
 
 }

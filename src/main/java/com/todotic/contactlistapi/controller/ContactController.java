@@ -23,7 +23,7 @@ public class ContactController {
 
 
     @GetMapping()
-    public Iterable<Contact> list(){
+    public Iterable<Contact> list() {
         logger.info("Recibida solicitud para listar todos los contactos.");
         Iterable<Contact> contacts = contactService.findAll();
         logger.debug("Contactos listados: {}", contacts);
@@ -31,7 +31,7 @@ public class ContactController {
     }
 
     @GetMapping("{id}")
-    public Contact get (@PathVariable Integer id){
+    public Contact get(@PathVariable Integer id) {
         logger.info("Recibida solicitud para obtener contacto con ID: {}", id);
         Contact contact = contactService.findById(id);
         logger.debug("Contacto obtenido: {}", contact);
@@ -59,15 +59,12 @@ public class ContactController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete/{id}")
-    public void delete (@PathVariable Integer id) {
+    public void delete(@PathVariable Integer id) {
         logger.info("Recibida solicitud para eliminar contacto con ID: {}", id);
         contactService.delete(id);
         logger.info("Contacto eliminado con éxito.");
 
     }
-
-
-
 
 
 }
